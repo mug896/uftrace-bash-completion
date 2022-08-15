@@ -22,8 +22,7 @@ _uftrace()
         WORDS=${OPTS[@]/#--*/}" -?"
     else
         if [[ $PREV = @(-d|--data|--diff|-L|--libmcount-path) ]]; then
-	        COMPREPLY=( $(compgen -d -- "$CUR") )
-            return
+            compopt -o dirnames
         elif [[ $PREV = --color ]]; then
             WORDS="yes no auto"
         elif [[ $PREV = --demangle ]]; then
