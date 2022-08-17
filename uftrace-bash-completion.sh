@@ -13,7 +13,7 @@ _uftrace()
             OPT2+=( ${TMP// /$'\n'} )
         fi
     done
-    unset IFS
+    unset -v IFS
 
     OPTS=( "${OPT1[@]}" "${OPT2[@]}" )
     if [[ $CUR =~ ^-- ]]; then
