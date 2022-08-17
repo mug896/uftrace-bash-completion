@@ -34,8 +34,7 @@ _uftrace()
         else
             WORDS="record replay live report info dump recv graph script tui"
             if printf '%s\n' "${OPT1[@]}" | grep -xq -- "$PREV" ||
-                [[ $PREV == @(,|@) ]] || [[ $CUR == @(,|@) ]]; then
-                WORDS=""
+                [[ $PREV == @(,|@) ]]; then WORDS=""
             else
                 for (( i = 1; i < ${#COMP_WORDS[@]}; i++ )); do
                     for TMP in $WORDS; do
