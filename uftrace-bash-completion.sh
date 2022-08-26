@@ -1,6 +1,6 @@
 _uftrace()
 {
-    local CMD=$1 CUR=${COMP_WORDS[COMP_CWORD]} PREV=${COMP_WORDS[COMP_CWORDS-1]}
+    local CMD=$1 CUR=${COMP_WORDS[COMP_CWORD]} PREV=${COMP_WORDS[COMP_CWORD-1]}
     [[ ${COMP_LINE:COMP_POINT-1:1} = " " ]] && CUR=""
     [[ $PREV == "=" ]] && PREV=${COMP_WORDS[COMP_CWORD-2]}
     local IFS=$' \t\n' WORDS OPTS=() OPT1=() OPT2=() TMP i
