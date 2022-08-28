@@ -8,7 +8,7 @@ _uftrace()
     IFS=$'\n'
     for TMP in $( $CMD --help | sed -En '/^\s+-/{ s/^\s{,15}((-\w),?\s)?(--[[:alnum:]-]+=?)?.*/ \2 \3/p }')
     do
-        if [[ $TMP =~ "=" ]]; then
+        if [[ $TMP == *=* ]]; then
             TMP=${TMP/=/} OPT1+=( ${TMP// /$'\n'} )
         else
             OPT2+=( ${TMP// /$'\n'} )
@@ -17,9 +17,9 @@ _uftrace()
     unset -v IFS
 
     OPTS=( "${OPT1[@]}" "${OPT2[@]}" )
-    if [[ $CUR =~ ^-- ]]; then
+    if [[ $CUR == --* ]]; then
         WORDS=${OPTS[@]/#-[^-]*/}
-    elif [[ $CUR =~ ^- ]]; then
+    elif [[ $CUR == -* ]]; then
         WORDS=${OPTS[@]/#--*/}" -?"
     else
         if [[ $PREV == @(-d|--data|--diff|-L|--libmcount-path) ]]; then
