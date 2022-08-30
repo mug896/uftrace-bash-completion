@@ -32,6 +32,8 @@ _uftrace()
             WORDS="regex glob"
         elif [[ $PREV == @(-!(-*)s|--sort) ]]; then
             WORDS="total self call avg min max"
+        elif [[ $PREV == --logfile ]]; then
+            :
         else
             WORDS="record replay live report info dump recv graph script tui"
             if printf '%s\n' "${OPT1[@]}" | grep -xq -- "$PREV" ||
