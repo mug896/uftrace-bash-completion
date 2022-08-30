@@ -22,7 +22,7 @@ _uftrace()
     elif [[ $CUR == -* ]]; then
         WORDS=${OPTS[@]/#--*/}" -?"
     else
-        if [[ $PREV == @(-d|--data|--diff|-L|--libmcount-path) ]]; then
+        if [[ $PREV == @(-!(-*)L|--libmcount-path) ]]; then
             compopt -o dirnames
         elif [[ $PREV == --color ]]; then
             WORDS="yes no auto"
@@ -30,7 +30,7 @@ _uftrace()
             WORDS="full simple no"
         elif [[ $PREV == --match ]]; then
             WORDS="regex glob"
-        elif [[ $PREV == @(-s|--sort) ]]; then
+        elif [[ $PREV == @(-!(-*)s|--sort) ]]; then
             WORDS="total self call avg min max"
         else
             WORDS="record replay live report info dump recv graph script tui"
