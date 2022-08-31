@@ -21,30 +21,28 @@ _uftrace()
         WORDS=${OPTS[@]/#-[^-]*/}
     elif [[ $CUR == -* ]]; then
         WORDS=${OPTS[@]/#--*/}" -?"
+    elif [[ $PREV == @(-!(-*)L|--libmcount-path) ]]; then
+        compopt -o dirnames
+    elif [[ $PREV == --color ]]; then
+        WORDS="yes no auto"
+    elif [[ $PREV == --demangle ]]; then
+        WORDS="full simple no"
+    elif [[ $PREV == --match ]]; then
+        WORDS="regex glob"
+    elif [[ $PREV == @(-!(-*)s|--sort) ]]; then
+        WORDS="total self call avg min max"
+    elif [[ $PREV == --logfile ]]; then
+        :
     else
-        if [[ $PREV == @(-!(-*)L|--libmcount-path) ]]; then
-            compopt -o dirnames
-        elif [[ $PREV == --color ]]; then
-            WORDS="yes no auto"
-        elif [[ $PREV == --demangle ]]; then
-            WORDS="full simple no"
-        elif [[ $PREV == --match ]]; then
-            WORDS="regex glob"
-        elif [[ $PREV == @(-!(-*)s|--sort) ]]; then
-            WORDS="total self call avg min max"
-        elif [[ $PREV == --logfile ]]; then
-            :
+        WORDS="record replay live report info dump recv graph script tui"
+        if printf '%s\n' "${OPT1[@]}" | grep -xq -- "$PREV" ||
+            [[ $PREV == @(,|@) ]]; then WORDS=""
         else
-            WORDS="record replay live report info dump recv graph script tui"
-            if printf '%s\n' "${OPT1[@]}" | grep -xq -- "$PREV" ||
-                [[ $PREV == @(,|@) ]]; then WORDS=""
-            else
-                for (( i = 1; i < ${#COMP_WORDS[@]}; i++ )); do
-                    for TMP in $WORDS; do
-                        [[ ${COMP_WORDS[i]} == $TMP ]] && WORDS=""
-                    done
+            for (( i = 1; i < ${#COMP_WORDS[@]}; i++ )); do
+                for TMP in $WORDS; do
+                    [[ ${COMP_WORDS[i]} == $TMP ]] && WORDS=""
                 done
-            fi
+            done
         fi
     fi
     COMPREPLY=( $(compgen -W "$WORDS" -- "$CUR") )
