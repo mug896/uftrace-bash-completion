@@ -45,6 +45,7 @@ _uftrace()
             done
         fi
     fi
+    [[ $COMP_WORDBREAKS == *$CUR* ]] && CUR=""
     COMPREPLY=( $(compgen -W "$WORDS" -- "$CUR") )
     [ "${COMPREPLY: -1}" = "=" ] && compopt -o nospace
 }
