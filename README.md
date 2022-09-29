@@ -1,4 +1,4 @@
-## uftrace Bash Completion
+## Uftrace Bash Completion
 
 Copy contents of `uftrace-bash-completion.sh` file to `~/.bash_completion`.  
 open new terminal and try auto completion !
