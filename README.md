@@ -1,6 +1,6 @@
-## Iptables Bash Completion
+## uftrace Bash Completion
 
-Copy contents of `httpie-bash-completion.sh` file to `~/.bash_completion`.  
+Copy contents of `uftrace-bash-completion.sh` file to `~/.bash_completion`.  
 open new terminal and try auto completion !
 
 
