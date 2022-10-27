@@ -24,3 +24,5 @@ bash$ uftrace --[tab]
 . . .
 ```
 
+> please leave an issue above if you have any problems using this script.
+
