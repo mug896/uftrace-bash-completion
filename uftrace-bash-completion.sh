@@ -19,7 +19,7 @@ _uftrace()
     opts=( "${opt1[@]}" "${opt2[@]}" )
     if [[ $cur == --* ]]; then
         words=${opts[@]/#-[^-]*/}
-    elif [[ $CUR == -* ]]; then
+    elif [[ $cur == -* ]]; then
         words=${opts[@]/#--*/}" -?"
     elif [[ $prev == @(-!(-*)L|--libmcount-path) ]]; then
         compopt -o dirnames
